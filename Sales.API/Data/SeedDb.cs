@@ -85,29 +85,99 @@ namespace Sales.API.Data
 
             if (!_context.Categories.Any())
             {
-                _context.Categories.Add(new Category { Name = "Automotores" });
-                _context.Categories.Add(new Category { Name = "Tecnologia" });
-                _context.Categories.Add(new Category { Name = "Ferreteri" });
-                _context.Categories.Add(new Category { Name = "Acabados" });
-                _context.Categories.Add(new Category { Name = "Jardineria" });
-                _context.Categories.Add(new Category { Name = "Juegos de meza" });
-                _context.Categories.Add(new Category { Name = "Bebes" });
-                _context.Categories.Add(new Category { Name = "Fritos" });
-                _context.Categories.Add(new Category { Name = "Decoracion" });
-                _context.Categories.Add(new Category { Name = "Piñateria" });
-                _context.Categories.Add(new Category { Name = "Motos" });
-                _context.Categories.Add(new Category { Name = "Escolar" });
-                _context.Categories.Add(new Category { Name = "Zapatos" });
-                _context.Categories.Add(new Category { Name = "Carpinteria" });
-                _context.Categories.Add(new Category { Name = "Neveras" });
-                _context.Categories.Add(new Category { Name = "labadoras" });
-                _context.Categories.Add(new Category { Name = "Piscinas" });
-                _context.Categories.Add(new Category { Name = "Sexuales" });
-                _context.Categories.Add(new Category { Name = "Marqueteria" });
-                _context.Categories.Add(new Category { Name = "Ropa interior M" });
-               
+                _context.Categories.Add(new Category
+                {
+                    Name = "Automotores",
+                    Products = new List<Product>()
+                    {
+                        new Product()
+                        {
+                            Name = "Repuestos",
+                            prodCategories = new List<ProdCategory>() {
+                                new ProdCategory() { Name = "LLantas" },
+                                new ProdCategory() { Name = "Bacreria" },
+                                new ProdCategory() { Name = "Cogineria" },
+                                new ProdCategory() { Name = "Luces" },
+                                new ProdCategory() { Name = "Cables" },
+                            }
+                        },
+                        new Product()
+                        {
+                            Name = "Pintura",
+                            prodCategories = new List<ProdCategory>() {
+                                new ProdCategory() { Name = "Tipo 1" },
+                                new ProdCategory() { Name = "Tipo 2 A" },
+                                new ProdCategory() { Name = "Tipo 2" },
+                                new ProdCategory() { Name = "Tipo 3" },
+                                new ProdCategory() { Name = "Tipo 3 A" },
+                            }
+                        },
+                    }
+                });
+
+                _context.Categories.Add(new Category
+                {
+                    Name = "Tecnologia",
+                    Products = new List<Product>()
+                    {
+                        new Product()
+                        {
+                            Name = "Sonido",
+                            prodCategories = new List<ProdCategory>() {
+                                new ProdCategory() { Name = "Bafles" },
+                                new ProdCategory() { Name = "Bajos" },
+                                new ProdCategory() { Name = "Twuiters" },
+                                new ProdCategory() { Name = "Pantalla" },
+                                new ProdCategory() { Name = "Wopers" },
+                            }
+                        },
+                        new Product()
+                        {
+                            Name = "Electrico",
+                            prodCategories = new List<ProdCategory>() {
+                                new ProdCategory() { Name = "Vidrios 1" },
+                                new ProdCategory() { Name = "Alarma 2 A" },
+                                new ProdCategory() { Name = "Sensores 2" },
+                                new ProdCategory() { Name = "Sillas 3" },
+                                new ProdCategory() { Name = "Parabrisas 3 A" },
+                            }
+                        },
+                    }
+                });
+
+                _context.Categories.Add(new Category
+                {
+                    Name = "Casa",
+                    Products = new List<Product>()
+                    {
+                        new Product()
+                        {
+                            Name = "Remodelacion",
+                            prodCategories = new List<ProdCategory>() {
+                                new ProdCategory() { Name = "Pintura" },
+                                new ProdCategory() { Name = "Enchapes" },
+                                new ProdCategory() { Name = "Baños" },
+                                new ProdCategory() { Name = "Electricidad" },
+                                new ProdCategory() { Name = "Acueducto" },
+                            }
+                        },
+                        new Product()
+                        {
+                            Name = "Interior",
+                            prodCategories = new List<ProdCategory>() {
+                                new ProdCategory() { Name = "Juego de sala" },
+                                new ProdCategory() { Name = "Alcoba" },
+                                new ProdCategory() { Name = "Cocina" },
+                                new ProdCategory() { Name = "Patio" },
+                                new ProdCategory() { Name = "Puertas" },
+                            }
+                        },
+                    }
+                });
 
                 await _context.SaveChangesAsync();
+
+
             }
         }
     }

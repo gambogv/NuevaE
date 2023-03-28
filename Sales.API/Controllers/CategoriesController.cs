@@ -23,7 +23,7 @@ namespace Sales.API.Controllers
         public async Task<IActionResult> GetAsync([FromQuery] PaginationDTO pagination)
         {
             var queryable = _context.Categories
-
+                   .Include(x => x.Products)
                    .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(pagination.Filter))
@@ -56,13 +56,25 @@ namespace Sales.API.Controllers
             return Ok(totalPages);
         }
 
+        [HttpGet("full")]
+        public async Task<IActionResult> GetFullAsync()
+        {
+            return Ok(await _context.Categories
+                .Include(x => x.Products!)
+                .ThenInclude(x => x.prodCategories)
+                .ToListAsync());
+        }
 
 
 
         [HttpGet("{id:int}")]
+
         public async Task<IActionResult> GetAsync(int id)
         {
-            var Category = await _context.Categories.FirstOrDefaultAsync(x => x.Id == id);
+            var Category = await _context.Categories
+                .Include(x => x.Products!)
+                .ThenInclude(x => x.prodCategories)
+                .FirstOrDefaultAsync(x => x.Id == id);
 
 
             if (Category == null)

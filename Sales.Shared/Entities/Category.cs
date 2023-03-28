@@ -12,6 +12,9 @@ namespace Sales.Shared.Entities
 
         public string Name { get; set; } = null!;
 
+        public ICollection<Product>? Products { get; set; }
 
+
+        public int ProductsNumber => Products ==null ? 0 : Products.Count;
     }
 }

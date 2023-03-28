@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sales.API.Data;
 
@@ -11,9 +12,11 @@ using Sales.API.Data;
 namespace Sales.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230322200822_addsProducts")]
+    partial class addsProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,30 +91,6 @@ namespace Sales.API.Migrations
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("Sales.Shared.Entities.ProdCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId", "Name")
-                        .IsUnique();
-
-                    b.ToTable("ProdCategories");
-                });
-
             modelBuilder.Entity("Sales.Shared.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -127,9 +106,6 @@ namespace Sales.API.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -175,17 +151,6 @@ namespace Sales.API.Migrations
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("Sales.Shared.Entities.ProdCategory", b =>
-                {
-                    b.HasOne("Sales.Shared.Entities.Product", "Product")
-                        .WithMany("prodCategories")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Sales.Shared.Entities.Product", b =>
                 {
                     b.HasOne("Sales.Shared.Entities.Category", "Category")
@@ -214,11 +179,6 @@ namespace Sales.API.Migrations
             modelBuilder.Entity("Sales.Shared.Entities.Country", b =>
                 {
                     b.Navigation("States");
-                });
-
-            modelBuilder.Entity("Sales.Shared.Entities.Product", b =>
-                {
-                    b.Navigation("prodCategories");
                 });
 
             modelBuilder.Entity("Sales.Shared.Entities.State", b =>
