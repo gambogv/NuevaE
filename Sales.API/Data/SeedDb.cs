@@ -24,7 +24,7 @@ namespace Sales.API.Data
         public async Task SeedAsync()
         {
             await _context.Database.EnsureCreatedAsync();
-           // await CheckCountriesAsync();
+            await CheckCountriesAsync();
             await CheckRolesAsync();
             await CheckUserAsync("1010", "Juan", "Zuluaga", "zulu@yopmail.com", "322 311 4620", "Calle Luna Calle Sol", UserType.Admin);
 
@@ -65,8 +65,8 @@ namespace Sales.API.Data
 
         private async Task CheckCountriesAsync()
         {
-            //if (!_context.Countries.Any())
-            //{
+           if (!_context.Countries.Any())
+            {
                 Response responseCountries = await _apiService.GetListAsync<CountryResponse>("/v1", "/countries");
                 if (responseCountries.IsSuccess)
                 {
@@ -121,7 +121,7 @@ namespace Sales.API.Data
                 }
 
 
-            //}
+           }
         }
     }
 }
