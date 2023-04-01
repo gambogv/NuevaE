@@ -204,6 +204,7 @@
         userDTO.UserName = userDTO.Email;
         userDTO.UserType = UserType.User;
         var responseHttp = await repository.Post<UserDTO>("/api/accounts/CreateUser", userDTO);
+
         if (responseHttp.Error)
         {
             var message = await responseHttp.GetErrorMessageAsync();
