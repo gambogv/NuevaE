@@ -104,7 +104,7 @@ namespace Sales.API.Controllers
 
                 return BadRequest(dbUpdateException.Message);
             }
-            catch(Exception exception) 
+            catch (Exception exception)
             {
                 return BadRequest(exception.Message);
             }

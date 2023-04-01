@@ -24,6 +24,7 @@ namespace Sales.API.Controllers
 
         [AllowAnonymous]
         [HttpGet("combo/{stateId:int}")]
+
         public async Task<ActionResult> GetCombo(int stateId)
         {
             return Ok(await _context.Cities

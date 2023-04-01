@@ -14,7 +14,7 @@ namespace Sales.WEB.Auth
         private readonly String _tokenKey;
         private readonly AuthenticationState _anonimous;
 
-        public AuthenticationProviderJWT(IJSRuntime jSRuntime, HttpClient httpClient) 
+        public AuthenticationProviderJWT(IJSRuntime jSRuntime, HttpClient httpClient)
         {
             _jSRuntime = jSRuntime;
             _httpClient = httpClient;
@@ -22,7 +22,7 @@ namespace Sales.WEB.Auth
             _anonimous = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
         }
 
-        public override async Task<AuthenticationState> GetAuthenticationStateAsync()
+        public async override Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var token = await _jSRuntime.GetLocalStorage(_tokenKey);
             if (token is null)
@@ -62,4 +62,5 @@ namespace Sales.WEB.Auth
             NotifyAuthenticationStateChanged(Task.FromResult(_anonimous));
         }
     }
+
 }

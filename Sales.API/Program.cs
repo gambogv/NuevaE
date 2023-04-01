@@ -16,6 +16,7 @@ builder.Services.AddControllers()
     .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sales API", Version = "v1" });
@@ -53,6 +54,7 @@ builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=LocalConnec
 builder.Services.AddTransient<SeedDb>();
 builder.Services.AddScoped<IApiService, ApiService>();
 builder.Services.AddScoped<IUserHelper, UserHelper>();
+builder.Services.AddScoped<IFileStorage, FileStorage>();
 
 
 builder.Services.AddIdentity<User, IdentityRole>(x =>
