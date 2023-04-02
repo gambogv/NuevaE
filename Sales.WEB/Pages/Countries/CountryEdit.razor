@@ -19,6 +19,10 @@ else
     private Country? country;
     private CountryForm? countryForm;
 
+    [CascadingParameter]
+    BlazoredModalInstance BlazoredModal { get; set; } = default!;
+
+
     [Parameter]
     public int Id { get; set; }
 
@@ -51,7 +55,9 @@ else
             return;
         }
 
+        await BlazoredModal.CloseAsync(ModalResult.Ok());
         Return();
+
     }
 
     private void Return()
